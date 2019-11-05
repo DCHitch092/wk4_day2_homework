@@ -42,6 +42,14 @@ class Film
     return customers.count
   end
 
+  def self.select_by_id(id)
+    sql = "SELECT * FROM films
+    WHERE id = $1"
+    values = [id]
+    film = SqlRunner.run(sql, values).first
+    return film
+  end
+
   def self.all()
     sql = "SELECT * FROM films"
     film_data = SqlRunner.run(sql)
